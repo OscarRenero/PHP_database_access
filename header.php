@@ -1,5 +1,5 @@
 <?php 
-// Asegura que la sesión esté disponible para el menú de navegación
+// Verifica si la sesión ya existe para evitar errores de duplicidad al cargar la cabecera
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
@@ -7,10 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../assets/style.css">
-    <title>WatchYourPost - Comunidad de Relojería</title>
-</head>
+    <meta charset="UTF-8"> <link rel="stylesheet" href="../assets/style.css"> <title>WatchYourPost - Comunidad de Relojería</title> </head>
 <body>
 <header>
     <h1>WatchYourPost</h1> <nav>
@@ -23,29 +20,32 @@ if (session_status() === PHP_SESSION_NONE) {
 
 ---
 
-### 4. `public/feed.php`
+### 📁 Archivo: `public/index.php` (ACTUALIZADO)
+Cambié el nombre del foro a **WatchYourPost** y actualicé los comentarios.
+
 ```php
 <?php
-// Carga de dependencias subiendo un nivel
-require '../includes/auth.php';
-require '../config/db.php';
-include '../includes/header.php';
+// Inicia la sesión para verificar si el usuario ya ha entrado
+session_start();
 
-// Consulta que une posts y usuarios para obtener marca, modelo y autor
-$posts = $pdo->query("SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.id ORDER BY created_at DESC")->fetchAll();
+// Si el usuario ya está logueado, lo enviamos directamente al feed de relojes
+if (isset($_SESSION['user_id'])) {
+    header('Location: feed.php');
+}
 ?>
-
-<a href="create_post.php" class="btn-new">Compartir un reloj</a>
-
-<?php foreach ($posts as $post): ?>
-<article class="watch-card">
-    <h2>
-        <span class="badge"><?= htmlspecialchars($post['brand']) ?></span> 
-        <a href="post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
-    </h2>
-    <p><?= substr(htmlspecialchars($post['content']), 0, 100) ?>...</p>
-    <small>Publicado por: <strong><?= htmlspecialchars($post['username']) ?></strong></small>
-</article>
-<?php endforeach; ?>
-
-<?php include '../includes/footer.php'; ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../assets/style.css">
+    <title>WatchYourPost - Bienvenido</title>
+</head>
+<body>
+<header>
+    <h1>WatchYourPost</h1> </header>
+<main>
+    <p>Bienvenido al foro. Regístrate o inicia sesión para participar en la comunidad de relojes.</p>
+    <a href="register.php">Registrarse</a> | <a href="login.php">Iniciar sesión</a>
+</main>
+</body>
+</html>

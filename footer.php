@@ -1,6 +1,5 @@
-</main>
-<footer>
-<p>Proyecto UT3 - Foro PHP</p>
+</main> <footer>
+    <p>WatchYourPost (Foro de Relojería)</p>
 </footer>
 </body>
 </html>

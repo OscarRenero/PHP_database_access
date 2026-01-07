@@ -1,7 +1,10 @@
 <?php
-session_start(); // Inicia o reanuda la sesión del usuario
+// Verifica si la sesión no ha sido iniciada previamente para evitar el error de sesión duplicada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Verifica si el usuario está autenticado; de lo contrario, redirige al login
+// Control de acceso: si no existe el ID del usuario, redirigir al login
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;

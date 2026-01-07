@@ -16,14 +16,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="logout.php">Salir</a>
     </nav>
 </header>
-<main> ```
+<main> 
 
----
-
-### 📁 Archivo: `public/index.php` (ACTUALIZADO)
-Cambié el nombre del foro a **WatchYourPost** y actualicé los comentarios.
-
-```php
 <?php
 // Inicia la sesión para verificar si el usuario ya ha entrado
 session_start();
@@ -49,3 +43,4 @@ if (isset($_SESSION['user_id'])) {
 </main>
 </body>
 </html>
+

@@ -1,5 +1,7 @@
 <?php
+// Inicia la sesión para verificar el estado del usuario
 session_start();
+// Si el usuario ya está logueado, lo redirige automáticamente al muro (feed)
 if (isset($_SESSION['user_id'])) {
 header('Location: feed.php');
 }
@@ -20,4 +22,5 @@ header('Location: feed.php');
 <a href="register.php">Registrarse</a> | <a href="login.php">Iniciar sesión</a>
 </main>
 </body>
+
 </html>

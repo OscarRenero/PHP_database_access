@@ -1,13 +1,13 @@
 <?php
-// Iniciamos sesión para poder destruirla
+// Inicia sesión para poder destruirla correctamente
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Borramos todas las variables y destruimos la sesión del servidor
+// Limpia las variables y destruye la sesión en el servidor
 session_unset();
 session_destroy();
 
-// Redirigimos a la página principal (index.php)
+// Redirige a la página principal de bienvenida
 header('Location: index.php');
 exit;

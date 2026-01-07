@@ -1,26 +1,27 @@
 <?php
-// Carga de seguridad, base de datos y diseño de cabecera
+// Cargamos seguridad, base de datos y cabecera visual
 require '../includes/auth.php';
 require '../config/db.php';
 include '../includes/header.php';
 
-// Obtiene todas las publicaciones junto con el nombre de su autor mediante un JOIN, ordenadas por fecha
+// Consulta SQL que obtiene los relojes y los nombres de sus dueños
 $posts = $pdo->query("SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.id ORDER BY created_at DESC")->fetchAll();
 ?>
 
-<a href="create_post.php">Nuevo post</a>
+<a href="create_post.php" class="btn-new">Compartir un reloj</a>
 
 <?php foreach ($posts as $post): ?>
-<article>
-    <h2><a href="post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a></h2>
-    
+<article class="watch-card">
+    <h2>
+        <span class="badge"><?= htmlspecialchars($post['brand']) ?></span> 
+        <a href="post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
+    </h2>
     <p><?= substr(htmlspecialchars($post['content']), 0, 100) ?>...</p>
-    
-    <small>Por <?= $post['username'] ?></small>
+    <small>Publicado por: <strong><?= htmlspecialchars($post['username']) ?></strong></small>
 </article>
 <?php endforeach; ?>
 
 <?php 
-// Carga el pie de página
+// Cargamos el pie de página
 include '../includes/footer.php'; 
 ?>

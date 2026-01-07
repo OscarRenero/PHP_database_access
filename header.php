@@ -1,3 +1,4 @@
+// Inicia la sesión para gestionar el acceso del usuario
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,4 +16,5 @@
 <a href="logout.php">Salir</a>
 </nav>
 </header>
+
 <main></main>

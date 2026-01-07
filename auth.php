@@ -1,11 +1,11 @@
 <?php
-// Evita el error "session already active" comprobando el estado
+// Evita el error de sesión duplicada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Si no hay sesión iniciada, redirige al login y corta la ejecución
+// Si no hay sesión, redirige al login
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
-    exit;
+    exit; // Detiene la ejecución para evitar bucles
 }

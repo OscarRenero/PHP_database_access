@@ -1,26 +1,29 @@
 <?php
-// Inicia el sistema de sesiones para guardar los datos del usuario logueado
-session_start();
-// Carga la conexión a la base de datos
+// Iniciamos sesión solo si no está activa para evitar el aviso de PHP
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Conexión a la base de datos subiendo un nivel
 require '../config/db.php';
 
-// Verifica si se ha enviado el formulario mediante el método POST
+// Procesamos el intento de entrada al recibir el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Busca al usuario en la base de datos comparando el email introducido
+    // Buscamos al usuario por su correo electrónico
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$_POST['email']]);
     $user = $stmt->fetch();
 
-    // Si el usuario existe y la contraseña coincide con el hash guardado
+    // Validamos la contraseña usando el hash de seguridad
     if ($user && password_verify($_POST['password'], $user['password'])) {
-        // Almacena el ID del usuario en la sesión y lo redirige al muro
+        // Guardamos el ID en la sesión y redirigimos al feed
         $_SESSION['user_id'] = $user['id'];
         header('Location: feed.php');
+        exit;
     }
 }
 ?>
 <form method="post">
     <input name="email" type="email" placeholder="Email" required>
     <input name="password" type="password" placeholder="Contraseña" required>
-    <button>Entrar</button>
+    <button type="submit">Entrar</button>
 </form>

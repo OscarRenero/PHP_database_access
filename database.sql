@@ -1,36 +1,34 @@
--- Creación de la base de datos con soporte para emojis y tildes
+-- Creación de la base de datos para el foro de relojes
 CREATE DATABASE foro_php CHARACTER SET utf8mb4;
 USE foro_php;
 
--- Tabla de usuarios registrados en la comunidad
+-- Tabla para gestionar los usuarios de la comunidad
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- ID único para cada usuario
-    username VARCHAR(50) UNIQUE NOT NULL, -- Nombre de usuario único
-    email VARCHAR(100) UNIQUE NOT NULL, -- Correo de contacto único
-    password VARCHAR(255) NOT NULL, -- Hash de la contraseña de seguridad
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de registro
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL, -- Almacena el hash de la contraseña
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla de publicaciones de relojes
+-- Tabla para las publicaciones de relojes (incluye campo brand)
 CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- ID del post
-    user_id INT NOT NULL, -- Relación con el usuario autor
-    brand VARCHAR(50) NOT NULL, -- Marca del reloj (específico de WatchYourPost)
-    title VARCHAR(150) NOT NULL, -- Modelo o título de la pieza
-    content TEXT NOT NULL, -- Descripción detallada del reloj
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Fecha de publicación
-    -- Si se borra el usuario, se borran sus relojes automáticamente
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    brand VARCHAR(50) NOT NULL, -- Marca del reloj
+    title VARCHAR(150) NOT NULL, -- Modelo o título
+    content TEXT NOT NULL, -- Detalles técnicos o descripción
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Tabla de comentarios en los hilos de relojes
+-- Tabla para los comentarios en cada publicación
 CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id INT NOT NULL, -- Relación con el post comentado
-    user_id INT NOT NULL, -- Relación con el autor del comentario
-    content TEXT NOT NULL, -- Contenido del comentario técnico
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- Limpieza automática de datos relacionados
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

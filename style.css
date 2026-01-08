@@ -40,3 +40,39 @@ h1 { color: #d4af37; } /* Título dorado */
     font-weight: bold;
     margin-bottom: 20px;
 }
+
+/* Sección de filtros */
+.filters {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
+
+.filter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-form input {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px;
+    background: #111;
+    border: 1px solid #d4af37;
+    color: white;
+    border-radius: 4px;
+}
+
+.btn-clean {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.btn-clean:hover {
+    color: #fff;
+}

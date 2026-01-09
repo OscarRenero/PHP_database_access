@@ -39,32 +39,43 @@ El script de creación se encuentra en:
 sql/database.sql
 ```
 ## Estructura del proyecto
-
 ```
 foro-php/
-│── config/
-│   └── db.php  
 │
-│── sql/
-│   └── database.sql
+├── config/
+│   └── db.php            # Configuración de conexión PDO a MySQL
 │
-│── public/
-│   ├── index.php         # Página principal
-│   ├── login.php         # Inicio de sesión
-│   ├── register.php      # Registro de usuarios
-│   ├── logout.php        # Cierre de sesión
-│   ├── profile.php       # Perfil de usuario
-│   ├── feed.php          # Feed de publicaciones
-│   ├── post.php          # Post completo con comentarios
-│   └── create_post.php   # Creación de publicaciones
+├── sql/
+│   └── database.sql      # Tablas users, posts y comments
 │
-│── includes/
-│   ├── header.php        # Cabecera común
-│   ├── footer.php        # Pie de página
-│   └── auth.php          # Protección de rutas
+├── public/
+│   ├── index.php         # Bienvenida y redirección inicial
+│   ├── login.php         # Procesamiento de acceso y sesión
+│   ├── register.php      # Creación de nuevos usuarios con hash
+│   ├── logout.php        # Destrucción segura de la sesión
+│   ├── profile.php       # Edición de avatar y cambio de contraseña
+│   ├── feed.php          # Muro principal con filtros de marca y fecha
+│   ├── post.php          # Vista individual y sistema de comentarios
+│   └── create_post.php   # Formulario de publicación técnica
 │
-│── assets/
-│   └── style.css         # Estilos CSS
+├── includes/
+│   ├── header.php        # Cabecera HTML y menú con mini-avatar
+│   ├── footer.php        # Cierre de etiquetas y pie de página centrado
+│   └── auth.php          # Middleware de protección de rutas privadas
+│
+└── assets/
+    ├── style.css         # Hoja de estilos premium (Negro/Dorado)
+    └── avatars/          # Galería de imágenes predefinidas (1-10)
+        ├── avatar1.png
+        ├── avatar2.png
+        ├── avatar3.png
+        ├── avatar4.png
+        ├── avatar5.png
+        ├── avatar6.png
+        ├── avatar7.png
+        ├── avatar8.png
+        ├── avatar9.png
+        └── avatar10.png
 ```
 ## Instalación y ejecución
 

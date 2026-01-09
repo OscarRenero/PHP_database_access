@@ -11,11 +11,11 @@ header('Location: feed.php');
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../assets/style.css">
-<title>Foro PHP</title>
+<title>WatchYourPost</title>
 </head>
 <body>
 <header>
-<h1>Foro PHP</h1>
+<h1>WatchYourPost</h1>
 </header>
 <main>
 <p>Bienvenido al foro. Regístrate o inicia sesión para participar.</p>
@@ -24,3 +24,4 @@ header('Location: feed.php');
 </body>
 
 </html>
+

@@ -16,13 +16,15 @@ $current_avatar = $_SESSION['user_avatar'] ?? 1;
 <header>
     <h1>WatchYourPost</h1>
     <nav>
-        <a href="feed.php">Explorar</a>
         <div class="user-menu" style="display:inline-flex; align-items:center;">
             <img src="../assets/avatars/avatar<?= $current_avatar ?>.png" 
                  style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 1px solid #d4af37; margin-right: 10px;">
-            <a href="profile.php">Mi Perfil</a>
+            
         </div>
+        <a href="feed.php">Explorar</a>
+        <a href="profile.php">Mi Perfil</a>
         <a href="logout.php">Salir</a>
     </nav>
 </header>
 <main>
+

@@ -1,3 +1,4 @@
+-- Active: 1767893039539@@127.0.0.1@3306
 -- Creación de la base de datos para el foro de relojes
 CREATE DATABASE foro_php CHARACTER SET utf8mb4;
 USE foro_php;
@@ -32,3 +33,5 @@ CREATE TABLE comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;

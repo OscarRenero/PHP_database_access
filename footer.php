@@ -1,5 +1,6 @@
 </main> <footer>
-    <p>WatchYourPost (Foro de Relojería)</p>
+    <p>&copy; <?= date('Y') ?> WatchYourPost - Comunidad de Relojería</p>
 </footer>
+
 </body>
 </html>

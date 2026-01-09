@@ -16,6 +16,7 @@ header('Location: feed.php');
 <body>
 <header>
 <h1>WatchYourPost</h1>
+<h2 style="color: #d4af37;">El tiempo es oro.</h2>
 </header>
 <main>
 <p>Bienvenido al foro. Regístrate o inicia sesión para participar.</p>
@@ -24,4 +25,5 @@ header('Location: feed.php');
 </body>
 
 </html>
+
 

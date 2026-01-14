@@ -9,7 +9,8 @@ services:
       MYSQL_PASSWORD: admin123
       MYSQL_ROOT_PASSWORD: admin123
     volumes:
-      - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql:ro
+      # El :Z es vital en Podman para permisos de lectura
+      - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql:Z
     ports:
       - "3306:3306"
 
@@ -17,7 +18,7 @@ services:
     build: .
     container_name: php_app
     ports:
-      - "80:80"
+      - "8080:80"
     environment:
       DB_HOST: db
       DB_PORT: 3306

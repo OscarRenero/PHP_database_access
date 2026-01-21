@@ -1,35 +1,40 @@
 <?php
-ob_start();
+ob_start(); 
 require '../includes/auth.php';
 require '../config/db.php';
 
-// 1. PRIMERO LA LÓGICA (Sin salida de texto)
+// Procesamos la lógica antes de cualquier include visual
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Insertamos marca (brand), título y contenido
-    $stmt = $pdo->prepare("INSERT INTO posts (user_id, brand, title, content) VALUES (?, ?, ?, ?)");
-    $stmt->execute([
-        $_SESSION['user_id'],
-        $_POST['brand'],
-        $_POST['title'],
-        $_POST['content']
-    ]);
-    
-    // Al estar aquí, la redirección funciona porque aún no hemos hecho "include" del header
-    header('Location: feed.php');
-    exit; // Es buena práctica poner exit tras una redirección
+    try {
+        $stmt = $pdo->prepare("INSERT INTO posts (user_id, brand, title, content) VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $_SESSION['user_id'],
+            $_POST['brand'],
+            $_POST['title'],
+            $_POST['content']
+        ]);
+        
+        // Si llegamos aquí, limpiamos el búfer y redirigimos
+        ob_end_clean(); 
+        header('Location: feed.php');
+        exit;
+    } catch (Exception $e) {
+        // Si hay error de DB, lo mostramos después del header
+        $error = "Error al publicar: " . $e->getMessage();
+    }
 }
 
-// 2. DESPUÉS EL DISEÑO (Solo se carga si NO hubo redirección)
+// Solo llegamos aquí si NO hubo redirección (es decir, carga inicial de la página)
 include '../includes/header.php';
 ?>
 
 <h2>Publicar nueva pieza</h2>
+<?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 <form method="post">
-    <input name="brand" placeholder="Marca (Rolex, Seiko, etc.)" required>
-    <input name="title" placeholder="Modelo o Referencia" required>
-    <textarea name="content" placeholder="Escribe los detalles técnicos..." required></textarea>
-    <button type="submit">Publicar en WatchYourPost</button>
+    <input name="brand" placeholder="Marca" required>
+    <input name="title" placeholder="Modelo" required>
+    <textarea name="content" placeholder="Detalles..." required></textarea>
+    <button type="submit">Publicar</button>
 </form>
 
 <?php include '../includes/footer.php'; ?>
-

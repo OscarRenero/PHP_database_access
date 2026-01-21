@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require '../includes/auth.php';
 require '../config/db.php';
 include '../includes/header.php';
@@ -70,3 +71,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <?php include '../includes/footer.php'; ?>
+

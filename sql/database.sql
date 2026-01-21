@@ -1,7 +1,6 @@
 -- Active: 1767893039539@@127.0.0.1@3306
 -- Creación de la base de datos para el foro de relojes
-CREATE DATABASE foro_php CHARACTER SET utf8mb4;
-USE foro_php;
+USE WatchYourPost;
 
 -- Tabla para gestionar los usuarios de la comunidad
 CREATE TABLE users (

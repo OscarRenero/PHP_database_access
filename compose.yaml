@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: WatchYourPost_DB
+    restart: always
+    environment:
+      MYSQL_DATABASE: WatchYourPost
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: admin123
+    volumes:
+      - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql:Z
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    container_name: php_app
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: WatchYourPost
+      DB_USER: admin
+      DB_PASS: admin123
+    depends_on:
+      - db

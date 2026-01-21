@@ -1,9 +1,8 @@
 <?php
 require '../includes/auth.php';
 require '../config/db.php';
-include '../includes/header.php';
 
-// Lógica de inserción al recibir el formulario
+// 1. PRIMERO LA LÓGICA (Sin salida de texto)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insertamos marca (brand), título y contenido
     $stmt = $pdo->prepare("INSERT INTO posts (user_id, brand, title, content) VALUES (?, ?, ?, ?)");
@@ -13,8 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['title'],
         $_POST['content']
     ]);
+    
+    // Al estar aquí, la redirección funciona porque aún no hemos hecho "include" del header
     header('Location: feed.php');
+    exit; // Es buena práctica poner exit tras una redirección
 }
+
+// 2. DESPUÉS EL DISEÑO (Solo se carga si NO hubo redirección)
+include '../includes/header.php';
 ?>
 
 <h2>Publicar nueva pieza</h2>

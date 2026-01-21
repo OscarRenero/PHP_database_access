@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require '../includes/auth.php';
 require '../config/db.php';
 
@@ -31,3 +32,4 @@ include '../includes/header.php';
 </form>
 
 <?php include '../includes/footer.php'; ?>
+

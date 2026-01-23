@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:latest
+    image: docker.io/library/mariadb:latest
     container_name: WatchYourPost_DB
     restart: always
     environment:

@@ -41,6 +41,10 @@ sql/database.sql
 ## Estructura del proyecto
 ```
 foro-php/
+|
+|
+|__Dockerfile
+|__compose.yaml
 │
 ├── config/
 │   └── db.php            # Configuración de conexión PDO a MySQL

@@ -30,7 +30,8 @@ class UserTest extends TestCase
         $stmt = $this->conn->prepare("INSERT INTO users(username,password) VALUES (?,?)");
         $result = $stmt->execute(["testuser","1234"]);
 
-        $this->assertTrue(false);
+        $this->assertTrue($result);
     }
 }
+
 

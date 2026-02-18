@@ -1,8 +1,6 @@
 -- Active: 1767893039539@@127.0.0.1@3306
 -- Creación de la base de datos para el foro de relojes
-drop database WatchUrPost
-use WatchUrPost
-    drop alssadl
+USE WatchYourPost;
 
 -- Tabla para gestionar los usuarios de la comunidad
 CREATE TABLE users (
@@ -36,6 +34,7 @@ CREATE TABLE comments (
 );
 
 ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
+
 
 
 

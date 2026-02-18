@@ -42,3 +42,4 @@ ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
 
 
 
+

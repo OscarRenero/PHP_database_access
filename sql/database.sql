@@ -7,7 +7,7 @@ USE WatchYourPost;
 -- Tabla para gestionar los usuarios de la comunidad
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
+    nombreusuario VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL, -- Almacena el hash de la contraseña
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -36,6 +36,7 @@ CREATE TABLE comments (
 );
 
 ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
+
 
 
 

@@ -3,7 +3,7 @@
 USE WatchYourPost;
 
 -- Tabla para gestionar los usuarios de la comunidad
-CREATE TABLE users (
+CREATE TABLE usaad (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -34,3 +34,4 @@ CREATE TABLE comments (
 );
 
 ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
+

@@ -2,6 +2,8 @@ name: PHP CI
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -21,7 +23,7 @@ jobs:
           --health-cmd="mysqladmin ping"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=3
+          --health-retries=5
 
     steps:
       - name: Checkout código
@@ -36,7 +38,7 @@ jobs:
         run: wget https://phar.phpunit.de/phpunit.phar
 
       - name: Esperar a MySQL
-        run: sleep 15
+        run: sleep 20
 
       - name: Ejecutar tests
         env:
@@ -46,4 +48,3 @@ jobs:
           DB_PASS: admin123
           DB_PORT: 3306
         run: php phpunit.phar tests
-

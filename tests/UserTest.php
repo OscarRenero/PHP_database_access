@@ -1,6 +1,5 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use PDO;
 
 class UserTest extends TestCase
 {
@@ -8,14 +7,13 @@ class UserTest extends TestCase
 
     protected function setUp(): void
     {
-//        
-        $this->conn = new PDO("mysql:host=127.0.0.1;dbname=testdb", "root", "root");
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->conn = new \PDO("mysql:host=127.0.0.1;dbname=testdb", "root", "root");
+        $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         $this->conn->exec("
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                nombre_usuario VARCHAR(50), 
+                username VARCHAR(50), 
                 password VARCHAR(255)
             );
         ");
@@ -34,4 +32,3 @@ class UserTest extends TestCase
         $this->assertTrue($result);
     }
 }
-

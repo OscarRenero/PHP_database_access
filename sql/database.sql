@@ -1,6 +1,6 @@
 -- Active: 1767893039539@@127.0.0.1@3306
 -- Creación de la base de datos para el foro de relojes
-USE WatchYourPost;
+USE gana;
 
 -- Tabla para gestionar los usuarios de la comunidad
 CREATE TABLE users (
@@ -34,6 +34,7 @@ CREATE TABLE comments (
 );
 
 ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
+
 
 
 

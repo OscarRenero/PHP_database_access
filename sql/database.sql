@@ -1,30 +1,31 @@
 -- Active: 1767893039539@@127.0.0.1@3306
 ------
--- Creación de la base de datos para el foro de relojes
-CREATE IF NOT EXISTS WatchYourPost;
-USE WatchYourPost;
 
--- Tabla para gestionar los usuarios de la comunidad
+-- NO crear base de datos aquí
+-- Usamos la que ya crea GitHub Actions: testdb
+
+-- Tabla users
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL, -- Almacena el hash de la contraseña
+    password VARCHAR(255) NOT NULL,
+    avatar INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla para las publicaciones de relojes (incluye campo brand)
+-- Tabla posts
 CREATE TABLE posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    brand VARCHAR(50) NOT NULL, -- Marca del reloj
-    title VARCHAR(150) NOT NULL, -- Modelo o título
-    content TEXT NOT NULL, -- Detalles técnicos o descripción
+    brand VARCHAR(50) NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Tabla para los comentarios en cada publicación
+-- Tabla comments
 CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
@@ -34,9 +35,6 @@ CREATE TABLE comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-ALTER TABLE users ADD COLUMN avatar INT DEFAULT 1 AFTER password;
-
 
 
 

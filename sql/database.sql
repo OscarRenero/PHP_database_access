@@ -1,10 +1,5 @@
--- Active: 1767893039539@@127.0.0.1@3306
-------
 
--- NO crear base de datos aquí
--- Usamos la que ya crea GitHub Actions: testdb
 
--- Tabla users
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -14,7 +9,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla posts
 CREATE TABLE posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -25,7 +19,6 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Tabla comments
 CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
@@ -35,23 +28,3 @@ CREATE TABLE comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
